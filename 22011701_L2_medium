@@ -1,0 +1,42 @@
+/*
+ID=22011701
+Name= Insyirah Amani binti Zainul Za'aba
+Topic= Rotate a Matrix by 180 degree (medium)
+*/
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void rotateMatrix(vector<vector<int>>& mat) {
+    int n = mat.size();
+  
+    for (int i = 0; i < n / 2; i++) {
+        for (int j = 0; j < n; j++) {
+            swap(mat[i][j], mat[n - i - 1][n - j - 1]);
+        }
+    }
+  
+    if (n % 2 != 0) {
+        int mid = n / 2;
+        for (int j = 0; j < n/2; j++)
+            swap(mat[mid][j], mat[mid][n - j - 1]);
+    }
+}
+
+int main() {
+    vector<vector<int>> mat = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+    rotateMatrix(mat);
+    for (int i = 0; i < mat.size(); i++) {
+        for (int j = 0; j < mat[i].size(); j++) {
+            cout << mat[i][j] << " ";
+        }
+        cout << "\n";
+    }
+
+    return 0;
+}
