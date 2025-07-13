@@ -15,7 +15,7 @@ public:
     Node *prev_ptr;
 
     Node(string name, Node *next_ptr = nullptr, Node *prev_ptr = nullptr)
-    { // Constructor with default nullptr for both pointers
+    { 
         this->name = name;
         this->next_ptr = next_ptr;
         this->prev_ptr = prev_ptr;
@@ -30,7 +30,7 @@ private:
 
 public:
     LinkedList(Node *head = nullptr)
-    { // Constructor initializes head and tail
+    { 
         this->head = head;
         this->tail = head;
         if (head)
@@ -43,21 +43,20 @@ public:
     void add_element(Node *node)
     {
         if (!node)
-            return; // Check for null pointer
-
+            return; 
         node->next_ptr = nullptr;
         node->prev_ptr = nullptr;
 
         if (!head)
-        { // If list is empty
+        { 
             head = node;
             tail = node;
         }
         else
         {
-            tail->next_ptr = node; // Link current tail to new node
-            node->prev_ptr = tail; // Link new node back to tail
-            tail = node;           // Update tail to new node
+            tail->next_ptr = node; 
+            node->prev_ptr = tail; 
+            tail = node;           
         }
     }
 
@@ -80,17 +79,16 @@ public:
     void delete_by_value(string val)
     {
         if (!head)
-            return; // Empty list
+            return; 
 
-        // Special case: deleting head
         if (head->name == val)
         {
             Node *temp = head;
             head = head->next_ptr;
             if (head)
-                head->prev_ptr = nullptr; // Update new head's prev_ptr
+                head->prev_ptr = nullptr; 
             else
-                tail = nullptr; // Update tail if list becomes empty
+                tail = nullptr; /
             delete temp;
             return;
         }
@@ -102,13 +100,13 @@ public:
         }
 
         if (current->next_ptr)
-        { // If value found
+        { 
             Node *temp = current->next_ptr;
             current->next_ptr = temp->next_ptr; // Link around temp
             if (temp->next_ptr)
                 temp->next_ptr->prev_ptr = current; // Update next node's prev_ptr
             if (temp == tail)
-                tail = current; // Update tail if deleting last node
+                tail = current; 
             delete temp;
         }
     }
@@ -116,20 +114,16 @@ public:
 
 int main()
 {
-    // Create nodes dynamically
     Node *node1 = new Node("Ali");
     Node *node2 = new Node("Ahmed");
     Node *node3 = new Node("Alee");
 
-    // Create linked list and add nodes
     LinkedList linkedlst(node1);
     linkedlst.add_element(node2);
     linkedlst.add_element(node3);
 
-    // Display the list
     linkedlst.display_list();
 
-    // Example of deletion
     linkedlst.delete_by_value("Ahmed");
     cout << "After deleting Ahmed: ";
     linkedlst.display_list();
