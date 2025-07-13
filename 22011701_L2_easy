@@ -1,0 +1,49 @@
+/*
+ID=22011701
+Name= Insyirah Amani binti Zainul Za'aba
+Topic= Efficiently compute sums of diagonals of a matrix (easy)
+*/
+
+#include <iostream>
+using namespace std;
+
+const int MAX = 100; // Maximum size of the matrix
+
+void computeDiagonalSums(int matrix[][MAX], int n)
+{
+    int principalDiagonalSum = 0;
+    int secondaryDiagonalSum = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        principalDiagonalSum += matrix[i][i];
+        secondaryDiagonalSum += matrix[i][n - i - 1];
+    }
+
+    cout << "Output:\n";
+    cout << "Primary Diagonal Sum: " << principalDiagonalSum << endl;
+    cout << "Secondary Diagonal Sum: " << secondaryDiagonalSum << endl;
+}
+
+int main()
+{
+    int n;
+
+    cout << "Input: ";
+    cin >> n;
+
+    int matrix[MAX][MAX]; // Fixed-size array
+
+    cout << "Enter the elements of the matrix:\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            cin >> matrix[i][j];
+        }
+    }
+
+    computeDiagonalSums(matrix, n);
+
+    return 0;
+}
